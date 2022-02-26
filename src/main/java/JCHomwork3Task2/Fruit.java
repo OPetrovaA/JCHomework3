@@ -2,20 +2,15 @@ package JCHomwork3Task2;
 
 public abstract class Fruit {
 
-    private String name;
-    private Float weight;
+        private final Float weight;
 
-    public Fruit(String name, Float weight){
-        this.name = name;
-        this.weight = weight;
+        public Fruit(Float weight) {
+            this.weight = weight;
+        };
+
+        public Float getWeight() {
+            return this.weight;
+        }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Float getWeight() {
-        return weight;
-    }
-}
 

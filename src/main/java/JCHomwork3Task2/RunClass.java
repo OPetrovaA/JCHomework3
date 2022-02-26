@@ -5,40 +5,41 @@ import java.util.ArrayList;
 public class RunClass {
     public static void main(String[] args) {
 
-        ArrayList<Apple> applesList = new ArrayList<>(7);
-        Apple apple0 = new Apple(1.0f);
-        Apple apple1 = new Apple(1.0f);
-        Apple apple2 = new Apple(1.0f);
-        Apple apple3 = new Apple(1.0f);
-        Apple apple4 = new Apple(1.0f);
-        Apple apple5 = new Apple(1.0f);
+        Apple apple = new Apple();
+        Box<Apple> appleBox = new Box<>();
+        appleBox.add(apple);
+        appleBox.add(apple);
+        appleBox.add(apple);
+        appleBox.add(apple);
+        appleBox.add(apple);
 
-        
+        Orange orange = new Orange();
+        Box<Orange> orangeBox = new Box<>();
+        orangeBox.add(orange);
+        orangeBox.add(orange);
+        orangeBox.add(orange);
+        orangeBox.add(orange);
 
-        Box<Apple> box1 = new Box<>(applesList);
-        Box<Apple> box2 = new Box<>(applesList);
-        box1.compareList(box2);
+        System.out.println("AppleBox weight: " + appleBox.getWeight().toString());
+        System.out.println("OrangeBox weight: " + orangeBox.getWeight().toString());
+        System.out.println("Compare: " + orangeBox.compare(appleBox).toString());
+        System.out.println();
 
+        Box<Apple> secondAppleBox = new Box<>();
+        secondAppleBox.add(apple);
 
-        ArrayList<Orange> orangeArrayList = new ArrayList<>(7);
-        Orange orange0 = new Orange(1.5f);
-        Orange orange1 = new Orange(1.5f);
-        Orange orange2 = new Orange(1.5f);
-        Orange orange3 = new Orange(1.5f);
-        Orange orange4 = new Orange(1.5f);
-        Orange orange5 = new Orange(1.5f);
-        Orange orange6 = new Orange(1.5f);
+        System.out.println("AppleBox weight before move: " + appleBox.getWeight().toString());
+        System.out.println("SecondAppleBox weight before move: " + secondAppleBox.getWeight().toString());
 
-        Box<Orange> box3 = new Box<>(orangeArrayList);
-        Box<Orange> box4 = new Box<>(orangeArrayList);
-        box3.compareList(box4);
+        secondAppleBox.moveTo(appleBox);
 
-        System.out.println(box1.getAppleList());
-        System.out.println(box2.getAppleList());
+        System.out.println("AppleBox weight after move: " + appleBox.getWeight().toString());
+        System.out.println("SecondAppleBox weight after move: " + secondAppleBox.getWeight().toString());
+        System.out.println();
 
-        System.out.println(box1.compareList(box2));
-        box1.toEmptyList(box2);
+        System.out.println("AppleBox weight: " + appleBox.getWeight().toString());
+        System.out.println("OrangeBox weight: " + orangeBox.getWeight().toString());
+        System.out.println("Compare: " + orangeBox.compare(appleBox).toString());
 
-        System.out.println(box2);
     }
 }

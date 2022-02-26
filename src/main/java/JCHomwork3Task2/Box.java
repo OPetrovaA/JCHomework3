@@ -3,44 +3,39 @@ package JCHomwork3Task2;
 import java.util.ArrayList;
 
 public class Box <T extends Fruit>{
-    ArrayList<T> fruitList;
+    ArrayList<T> fruitList; // содержимое коробки
 
-    public Box(ArrayList<T> fruitList){
-        this.fruitList = fruitList;
+   // public Box(ArrayList<T> content){
+     //   this.content = content;
+    //}
+
+    public Box(){
+        this.fruitList = new ArrayList<T>();
     }
 
-    public Float getAppleList(){
-       Float result = Float.valueOf(0);
-       for(T t : getFruitList()){
-           if(t!=null) {
-               Float value = t.getWeight();
-               result = result + value;
-           }
-       }
-       return result;
-    }
-
-    public boolean compareList(Box<T> box){
-        if(this.getAppleList().floatValue() == box.getAppleList().floatValue()) return true;
-        return false;
-    }
-
-    public void toEmptyList(Box<T> box){
-        System.out.println("в новой коробке до: " + this.getAppleList());
-        System.out.println("В старой коробке до: " + box.getAppleList());
-        for(T t: box.getFruitList()){
-            this.getFruitList().add(t);
+    public Float getWeight(){   //
+        if (this.fruitList.isEmpty()){ //проверка на ровно нулю
+            return 0.0f;
         }
-        box.getFruitList().clear();
-        System.out.println("в новой коробке после: " + this.getAppleList());
-        System.out.println("В старой коробке после: " + box.getAppleList());
+        return this.fruitList.size() * this.fruitList.get(0).getWeight(); //перемножаем кол-во элементов в массиве на вес нулевого элемента
     }
 
-    //public void getWeight()
-
-
-    public ArrayList<T> getFruitList(){
-        return fruitList;
+    public Boolean compare(Box<?> secondBox){
+        return Math.abs(this.getWeight() - secondBox.getWeight()) < 0.0001;
     }
 
+    public void add(T fruit){
+        this.fruitList.add(fruit);
+    }
+
+    // public void clear(){
+      //  this.content.clear();
+    //}
+
+    public void moveTo(Box<T> secondBox){ // метод пересыпание фруктов
+        for (T fruit : this.fruitList){
+            secondBox.add(fruit); // вторая коробка
+        }
+        this.fruitList.clear();
+    }
 }
